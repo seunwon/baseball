@@ -3,23 +3,29 @@ import { useState } from "react";
 function StartPage() {
   const [count, setCount] = useState(0);
   const [guess, setGuess] = useState("");
+  const [finalGuess, setfinalGuess] = useState("");
 
   function handleChange(e) {
     setGuess(e.target.value);
+    console.log(e.target.value);
+  }
+
+  function addGuess() {
+    setCount(count + 1);
+    setfinalGuess(guess);
+    console.log(finalGuess);
   }
 
   return (
     <>
-      <h1>숫자야구</h1>
-
       <div className="App">
-        <button onClick={() => setCount((count) => count + 1)}>{count}</button>
         <input
           type="text"
           onChange={handleChange}
           placeholder="숫자 세개를 입력하세요"
         ></input>
-        <p>You typed: {guess}</p>
+        <button onClick={addGuess}>submit</button>
+        <p>You typed: {finalGuess}</p>
       </div>
     </>
   );
