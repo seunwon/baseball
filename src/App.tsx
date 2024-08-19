@@ -4,7 +4,6 @@ import GamePage from "./Game";
 function App() {
   return (
     <>
-      <StartPage />
       <GamePage />
     </>
   );
