@@ -1,19 +1,48 @@
 import { useState, useEffect } from "react";
 import { GenerateNumbers } from "./Answer";
 
-interface GuessInfo {
-  id?: number;
-  guess?: string;
-  ball?: number;
-  strike?: number;
-}
+class GuessInfo {
+  private _id?: number;
+  private _guess?: string;
+  private _ball?: number;
+  private _strike?: number;
 
+  get id(): number | undefined {
+    return this._id;
+  }
+
+  set id(value: number | undefined) {
+    this._id = value;
+  }
+
+  get guess(): string | undefined {
+    return this._guess;
+  }
+
+  set guess(value: string | undefined) {
+    this._guess = value;
+  }
+
+  get ball(): number | undefined {
+    return this._ball;
+  }
+
+  set ball(value: number | undefined) {
+    this._ball = value;
+  }
+
+  get strike(): number | undefined {
+    return this._strike;
+  }
+
+  set strike(value: number | undefined) {
+    this._strike = value;
+  }
+}
 function StartPage() {
   const [count, setCount] = useState(0);
   const [guess, setGuess] = useState("");
   const [answer, setAnswer] = useState<[number, number, number] | null>(null);
-  const [ball, setBall] = useState(0);
-  const [strike, setStrike] = useState(0);
   const [homeRun, setHomeRun] = useState("");
   const [guessHistory, setGuessHistory] = useState<GuessInfo[]>([]);
 
@@ -58,8 +87,6 @@ function StartPage() {
     if (s === 3) {
       setHomeRun("HomeRun!⚾️");
     }
-    setBall(b);
-    setStrike(s);
 
     console.log("ball: ", b);
     console.log("strike: ", s);
@@ -78,10 +105,6 @@ function StartPage() {
           placeholder="숫자 세개를 입력하세요"
         />
         <button onClick={addGuess}>submit</button>
-        <p>You typed: {guess}</p>
-        <p>Strikes: {strike}</p>
-        <p>Balls: {ball}</p>
-
         <ul>
           {guessHistory.map((g) => (
             <li key={g.id}>
