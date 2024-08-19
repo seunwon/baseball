@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { GenerateNumbers } from "./Answer";
 import { GuessInfo } from "./GuessInfo";
 
@@ -19,7 +19,8 @@ function StartPage() {
     setGuess(e.target.value);
   }
 
-  function addGuess() {
+  function addGuess(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     if (!answer) {
       return;
     }
@@ -36,13 +37,15 @@ function StartPage() {
     <>
       <h1>숫자야구</h1>
       <div className="App">
-        <input
-          type="text"
-          value={guess}
-          onChange={handleChange}
-          placeholder="숫자 세개를 입력하세요"
-        />
-        <button onClick={addGuess}>submit</button>
+        <form onSubmit={addGuess}>
+          <input
+            type="text"
+            value={guess}
+            onChange={handleChange}
+            placeholder="숫자 세개를 입력하세요"
+          />
+          <button onClick={addGuess}>submit</button>
+        </form>
         <ul>
           {guessHistory.map((g) => (
             <li key={g.id}>
