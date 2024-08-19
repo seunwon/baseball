@@ -1,30 +1,45 @@
 export class GuessInfo {
-  private _id?: number;
-  private _guess?: string;
-  private _ball?: number;
-  private _strike?: number;
+  _ball: number;
+  _strike: number;
+  constructor(
+    private _id: number,
+    private _guess: string,
+    private _answer: [number, number, number]
+  ) {
+    this._ball = 0;
+    this._strike = 0;
+  }
 
   get id(): number | undefined {
     return this._id;
-  }
-
-  set id(value: number | undefined) {
-    this._id = value;
   }
 
   get guess(): string | undefined {
     return this._guess;
   }
 
-  set guess(value: string | undefined) {
-    this._guess = value;
+  get answer(): [number, number, number] | undefined {
+    return this._answer;
   }
 
   get ball(): number | undefined {
-    return this._ball;
+    const numbers = this._guess.split("").map(Number);
+    for (let i = 0; i < 3; i++) {
+      if (this._answer.includes(numbers[i]) && numbers[i] != this._answer[i]) {
+        this._ball++;
+      }
+    }
+    return this.ball;
   }
 
   get strike(): number | undefined {
-    return this._strike;
+    const numbers = this._guess.split("").map(Number);
+    for (let i = 0; i < 3; i++) {
+      if (numbers[i] === this._answer[i]) {
+        this._strike++;
+      }
+    }
+
+    return this.strike;
   }
 }

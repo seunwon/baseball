@@ -21,40 +21,7 @@ function StartPage() {
 
   function addGuess() {
     setCount(count + 1);
-    const { b, s } = hitNumber(guess);
-    setGuessHistory([
-      ...guessHistory,
-      { id: count, guess: guess, ball: b, strike: s },
-    ]);
-  }
-
-  function hitNumber(currentGuess: string) {
-    let s = 0;
-    let b = 0;
-    if (!answer) throw new Error();
-
-    const numbers = currentGuess.split("").map(Number);
-
-    for (let i = 0; i < 3; i++) {
-      if (numbers[i] === answer[i]) {
-        s++;
-      }
-    }
-
-    for (let i = 0; i < 3; i++) {
-      if (answer.includes(numbers[i]) && numbers[i] != answer[i]) {
-        b++;
-      }
-    }
-
-    if (s === 3) {
-      setHomeRun("HomeRun!⚾️");
-    }
-
-    console.log("ball: ", b);
-    console.log("strike: ", s);
-
-    return { b, s };
+    setGuessHistory([...guessHistory, ,]);
   }
 
   return (
