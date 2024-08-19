@@ -1,14 +1,9 @@
 export class GuessInfo {
-  _ball: number;
-  _strike: number;
   constructor(
     private _id: number,
     private _guess: string,
     private _answer: [number, number, number]
-  ) {
-    this._ball = 0;
-    this._strike = 0;
-  }
+  ) {}
 
   get id(): number | undefined {
     return this._id;
@@ -23,23 +18,24 @@ export class GuessInfo {
   }
 
   get ball(): number | undefined {
+    let b = 0;
     const numbers = this._guess.split("").map(Number);
     for (let i = 0; i < 3; i++) {
       if (this._answer.includes(numbers[i]) && numbers[i] != this._answer[i]) {
-        this._ball++;
+        b++;
       }
     }
-    return this.ball;
+    return b;
   }
 
   get strike(): number | undefined {
+    let s = 0;
     const numbers = this._guess.split("").map(Number);
     for (let i = 0; i < 3; i++) {
       if (numbers[i] === this._answer[i]) {
-        this._strike++;
+        s++;
       }
     }
-
-    return this.strike;
+    return s;
   }
 }

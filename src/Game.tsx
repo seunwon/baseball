@@ -20,8 +20,16 @@ function StartPage() {
   }
 
   function addGuess() {
+    if (!answer) {
+      return;
+    }
     setCount(count + 1);
-    setGuessHistory([...guessHistory, ,]);
+    const newGuess = new GuessInfo(count, guess, answer);
+    setGuessHistory((prevGuessHistory) => [...prevGuessHistory, newGuess]);
+    console.log(newGuess);
+    if (newGuess.strike === 3) {
+      setHomeRun("홈런입니다");
+    }
   }
 
   return (
