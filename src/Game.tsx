@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { GenerateNumbers } from "./Answer";
 import { GuessInfo } from "./GuessInfo";
+import "./Game.css";
 
-function StartPage() {
+function GamePage() {
   const [count, setCount] = useState(0);
   const [guess, setGuess] = useState("");
   const [answer, setAnswer] = useState<[number, number, number] | null>(null);
@@ -35,7 +36,7 @@ function StartPage() {
 
   return (
     <>
-      <h1>숫자야구</h1>
+      <h2>숫자야구</h2>
       <div className="App">
         <form onSubmit={addGuess}>
           <input
@@ -59,4 +60,4 @@ function StartPage() {
   );
 }
 
-export default StartPage;
+export default GamePage;

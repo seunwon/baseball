@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Start.css";
 
-function StartPage() {
+function RankingPage() {
   const navigate = useNavigate();
 
   const startGame = () => {
@@ -11,12 +10,9 @@ function StartPage() {
 
   return (
     <>
-      <h1>숫자야구</h1>
-      <div className="App">
-        <button onClick={startGame}>start</button>
-      </div>
+      <h1>등수</h1>
     </>
   );
 }
 
-export default StartPage;
+export default RankingPage;
