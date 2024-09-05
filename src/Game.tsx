@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GenerateNumbers } from "./Answer";
+import { useNavigate } from "react-router-dom";
 import { GuessInfo } from "./GuessInfo";
 import "./Game.css";
 
@@ -9,6 +10,7 @@ function GamePage() {
   const [answer, setAnswer] = useState<[number, number, number] | null>(null);
   const [homeRun, setHomeRun] = useState("");
   const [guessHistory, setGuessHistory] = useState<GuessInfo[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const x = GenerateNumbers();
@@ -18,6 +20,10 @@ function GamePage() {
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setGuess(e.target.value);
+  }
+
+  function handleNextPage() {
+    navigate("/ranking");
   }
 
   function addGuess(e: React.FormEvent<HTMLFormElement>) {
@@ -55,6 +61,9 @@ function GamePage() {
           ))}
         </ul>
         <p>{homeRun}</p>
+        {homeRun === "홈런입니다" && (
+          <button onClick={handleNextPage}>다음 페이지로</button>
+        )}
       </div>
     </>
   );
