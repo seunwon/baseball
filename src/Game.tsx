@@ -10,12 +10,15 @@ function GamePage() {
   const [answer, setAnswer] = useState<[number, number, number] | null>(null);
   const [homeRun, setHomeRun] = useState("");
   const [guessHistory, setGuessHistory] = useState<GuessInfo[]>([]);
+  const [player, setPlayer] = useState<string | null>("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const x = GenerateNumbers();
     setAnswer(x);
     console.log(x);
+    const name = localStorage.getItem("playerName");
+    setPlayer(name);
   }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -43,6 +46,7 @@ function GamePage() {
   return (
     <>
       <h2>숫자야구</h2>
+      <p>{player} 님의 플레이</p>
       <div className="App">
         <form onSubmit={addGuess}>
           <input
