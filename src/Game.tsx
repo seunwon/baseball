@@ -45,7 +45,7 @@ function GamePage() {
 
   return (
     <>
-      <h2>숫자야구</h2>
+      <h2 id="header">숫자야구</h2>
       <p>{player} 님의 플레이</p>
       <div className="App">
         <form onSubmit={addGuess}>

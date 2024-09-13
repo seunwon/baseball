@@ -26,17 +26,18 @@ function StartPage() {
 
   return (
     <>
-      <h1>숫자야구</h1>
+      <h1 id="font">숫 자 야 구 ⚾️</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="이름을 입력하세요"
           value={name}
           onChange={handleChange}
+          id="pixel"
         />
         <div className="App">
           <Link to="/game" onClick={handleStart}>
-            <button>start</button>
+            <button id="pixel">start</button>
           </Link>
         </div>
       </form>
