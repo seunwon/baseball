@@ -40,6 +40,7 @@ function GamePage() {
     console.log(newGuess);
     if (newGuess.strike === 3) {
       setHomeRun("홈런입니다");
+      localStorage.setItem("score", count.toString());
     }
   }
 
