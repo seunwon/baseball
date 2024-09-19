@@ -10,6 +10,7 @@ function RankingPage() {
 
   const [player, setPlayer] = useState<string | null>("");
   const [score, setScore] = useState<string | null>("");
+  const [userRanking, setUserRanking] = useState<Ranking[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,17 +18,22 @@ function RankingPage() {
     setPlayer(name);
     const number = localStorage.getItem("score");
     setScore(number);
+    const savedRankings = localStorage.getItem("rankings");
+    if (savedRankings) {
+      setUserRanking(JSON.parse(savedRankings));
+    }
   }, []);
 
   function handleFirstPage() {
     navigate("/");
   }
 
-  let userRanking = [{ name: "은원", score: "3" }];
-
   function addArray() {
-    userRanking.push({ name: player, score: score });
-    console.log(userRanking);
+    const newRanking = { name: player, score: score };
+    const updatedRankings = [...userRanking, newRanking];
+    setUserRanking(updatedRankings);
+    localStorage.setItem("rankings", JSON.stringify(updatedRankings));
+    console.log(updatedRankings);
   }
 
   return (
