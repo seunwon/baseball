@@ -31,6 +31,7 @@ function RankingPage() {
   function addArray() {
     const newRanking = { name: player, score: score };
     const updatedRankings = [...userRanking, newRanking];
+    updatedRankings.sort((a, b) => Number(a.score) - Number(b.score));
     setUserRanking(updatedRankings);
     localStorage.setItem("rankings", JSON.stringify(updatedRankings));
     console.log(updatedRankings);
